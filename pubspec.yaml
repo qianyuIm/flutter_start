@@ -1,0 +1,68 @@
+name: flutter_start
+description: Flutter start project.
+version: 1.0.0+1
+author: QianyuIm
+publish_to: 'none'
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+# 依赖
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  # 国际化
+  flutter_localizations:
+    sdk: flutter
+  # 状态管理
+  provider: ^5.0.0
+  # 路径
+  path_provider: ^2.0.1
+  # 常用工具类库
+  flustars: ^2.0.1
+  # 获取当前设备信息
+  device_info: ^2.0.1
+  #  firebase : only VPN
+  firebase_storage: ^8.1.0
+
+# 开发阶段依赖
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # json转换 eg: flutter packages pub run build_runner build
+  json_serializable: ^4.1.2
+  build_runner: ^2.0.3
+
+flutter:
+  uses-material-design: true
+
+  # assets:
+  #   - images/icon.jpeg
+   # 配置字体，可配置多个，支持ttf和otf,ttc等字体资源
+  fonts:
+    - family: IndieFlower 
+      fonts:
+        - asset: assets/fonts/IndieFlower-Regular.ttf
+    - family: BalooBhai2 
+      fonts:
+        - asset: assets/fonts/BalooBhai2-Regular.ttf
+    - family: Inconsolata 
+      fonts:
+        - asset: assets/fonts/Inconsolata-Regular.ttf
+    - family: Neucha 
+      fonts:
+        - asset: assets/fonts/Neucha-Regular.ttf
+    - family: ComicNeue 
+      fonts:
+        - asset: assets/fonts/ComicNeue-Regular.ttf
+    - family: CHOPS
+      fonts:
+        - asset: assets/fonts/CHOPS.TTF
+    - family: kuaile
+      fonts:
+        - asset: assets/fonts/ZCOOLKuaiLe-Regular.ttf
+
+flutter_intl:
+  enabled: true
