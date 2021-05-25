@@ -49,6 +49,46 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Skip`
+  String get splashSkip {
+    return Intl.message(
+      'Skip',
+      name: 'splashSkip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Auto`
+  String get autoBySystem {
+    return Intl.message(
+      'Auto',
+      name: 'autoBySystem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Setting`
+  String get setting {
+    return Intl.message(
+      'Setting',
+      name: 'setting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data Management`
+  String get dataManagement {
+    return Intl.message(
+      'Data Management',
+      name: 'dataManagement',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -26,7 +26,13 @@ dependencies:
   device_info: ^2.0.1
   #  firebase : only VPN
   firebase_storage: ^8.1.0
-
+  # 网络
+  dio: ^4.0.0
+  # ui
+  pull_to_refresh: ^2.0.0
+  # 带缓存的图片
+  cached_network_image: ^3.0.0
+  
 # 开发阶段依赖
 dev_dependencies:
   flutter_test:

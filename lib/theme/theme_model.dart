@@ -19,7 +19,14 @@ class ThemeModel extends ChangeNotifier {
   ];
 
   /// 主题颜色列表
-  static const List<MaterialColor> themeColors = [Colors.red, Colors.green];
+  static const List<MaterialColor> themeColors = [
+    Colors.red, 
+    Colors.green,
+    Colors.yellow,
+    Colors.green,
+    Colors.blue,
+    Colors.indigo,
+    Colors.purple];
 
   /// 用户选择的明暗模式
   late bool _isUserDarkMode;
@@ -29,9 +36,29 @@ class ThemeModel extends ChangeNotifier {
 
   /// 当前字体索引
   late int _fontIndex;
+
   ThemeModel() {
     _isUserDarkMode = SpUtil.getBool(kThemeUserDarkMode)!;
     _themeColor = themeColors[SpUtil.getInt(kThemeColorIndex)!];
     _fontIndex = SpUtil.getInt(kFontIndex)!;
+  }
+  int get fontIndex => _fontIndex;
+
+  themeData({bool isPlatformDarkMode: false}) {
+    var isDark = isPlatformDarkMode || _isUserDarkMode;
+    Brightness brightness = isDark ? Brightness.dark : Brightness.light;
+
+    var themeColor = _themeColor;
+    var accentColor = isDark ? themeColor[700] : _themeColor;
+
+    var themeData = ThemeData(
+      brightness: brightness,
+      primaryColorBrightness: Brightness.dark,
+        accentColorBrightness: Brightness.dark,
+        primarySwatch: themeColor,
+        accentColor: accentColor,
+        fontFamily: fontValueList[fontIndex]
+    );
+    return themeData;
   }
 }

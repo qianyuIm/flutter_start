@@ -1,1 +1,6 @@
-{}
+{
+    "splashSkip": "跳过",
+    "autoBySystem": "跟随系统",
+    "setting": "应用设置",
+    "dataManagement": "数据管理"
+}

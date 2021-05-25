@@ -1,1 +1,6 @@
-{}
+{
+    "splashSkip": "Skip",
+    "autoBySystem": "Auto",
+    "setting": "Setting",
+    "dataManagement": "Data Management"
+}

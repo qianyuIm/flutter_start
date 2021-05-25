@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_start/router/router_utils.dart';
 import 'package:flutter_start/ui/page/splash/splash_page.dart';
+import 'package:flutter_start/ui/page/tab/scroll_header_demo.dart';
 import 'package:flutter_start/ui/page/tab/tab_navigator.dart';
 
 class MyRouterName {
@@ -19,9 +20,9 @@ class MyRouter {
       case MyRouterName.splash:
         return NoAnimRouteBuilder(SplashPage());
       case MyRouterName.tab:
-        return Left2RightRouter(TabNavigator());
+        return NoAnimRouteBuilder(TabNavigator());
       case MyRouterName.setting:
-        return NoAnimRouteBuilder(SplashPage());
+        return NoAnimRouteBuilder(ScrollHeaderDemoPage());
       
       default:
         return MaterialPageRoute(
