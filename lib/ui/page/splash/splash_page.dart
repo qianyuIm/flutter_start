@@ -9,12 +9,12 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     
-  late AnimationController _countdownController;
+ late AnimationController _countdownController;
 
   @override
   void initState() {
      _countdownController =
-        AnimationController(vsync: this, duration: Duration(seconds: 4));
+        AnimationController(vsync: this, duration: Duration(seconds: 5));
     _countdownController.forward();
     super.initState();
   }
@@ -32,6 +32,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           alignment: Alignment.topRight,
           child: SafeArea(
             child: InkWell(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
               onTap: () {
                 openTabPage(context);
               },
@@ -44,7 +46,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                 ),
                 child: SplashAnimatedCountdown(
                   context: context,
-                  animation: StepTween(begin: 3, end: 0).animate(_countdownController),
+                  animation: StepTween(begin: 4, end: 0).animate(_countdownController),
                 ),
               ),
             ),
@@ -57,7 +59,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 }
 /// 打开tab页面
 void openTabPage(context) {
-  Navigator.of(context).pushNamed(MyRouterName.tab);
+  ///  pushReplacementNamed 将当前页面替换，当前页面被销毁
+  Navigator.of(context).pushReplacementNamed(MyRouterName.tab);
 }
 /// 倒计时按钮
 class SplashAnimatedCountdown extends AnimatedWidget {

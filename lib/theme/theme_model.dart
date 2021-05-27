@@ -20,13 +20,14 @@ class ThemeModel extends ChangeNotifier {
 
   /// 主题颜色列表
   static const List<MaterialColor> themeColors = [
-    Colors.red, 
+    Colors.red,
     Colors.green,
     Colors.yellow,
     Colors.green,
     Colors.blue,
     Colors.indigo,
-    Colors.purple];
+    Colors.purple
+  ];
 
   /// 用户选择的明暗模式
   late bool _isUserDarkMode;
@@ -52,13 +53,13 @@ class ThemeModel extends ChangeNotifier {
     var accentColor = isDark ? themeColor[700] : _themeColor;
 
     var themeData = ThemeData(
-      brightness: brightness,
-      primaryColorBrightness: Brightness.dark,
+        brightness: brightness,
+        primaryColorBrightness: Brightness.dark,
         accentColorBrightness: Brightness.dark,
         primarySwatch: themeColor,
         accentColor: accentColor,
-        fontFamily: fontValueList[fontIndex]
-    );
+        splashColor: themeColor.withAlpha(50),
+        fontFamily: fontValueList[fontIndex]);
     return themeData;
   }
 }

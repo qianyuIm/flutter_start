@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_start/app_start.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_start/generated/l10n.dart';
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return ScreenUtilInit(
+      designSize: Size(375, 667),
+      builder: () => MultiProvider(
         providers: [
           /// 皮肤
           ChangeNotifierProvider<ThemeModel>(
@@ -51,9 +54,16 @@ class MyApp extends StatelessWidget {
                 supportedLocales: S.delegate.supportedLocales,
                 onGenerateRoute: MyRouter.generateRoute,
                 initialRoute: MyRouterName.splash,
+                builder: (context, child) {
+                  return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: child!,
+                  );
+                },
               ),
             );
           },
-        ));
+        )),
+    );
   }
 }

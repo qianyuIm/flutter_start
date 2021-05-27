@@ -20,6 +20,7 @@ class _TabNavigatorState extends State<TabNavigator> {
   var _pageController = PageController();
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       floatingActionButton: _buildSearchButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -50,7 +51,7 @@ class _TabNavigatorState extends State<TabNavigator> {
       backgroundColor: iconColor,
       child: const Icon(Icons.search),
       onPressed: () {
-        Navigator.of(context).pushNamed(MyRouterName.setting);
+        Navigator.of(context).pushNamed(MyRouterName.demo);
       },
     );
   }
@@ -107,6 +108,7 @@ class _TabNavigatorBottomBarState extends State<TabNavigatorBottomBar> {
       iconColor = Theme.of(context).accentColor;
       textStyle = TextStyle(fontSize: 13.0, color: iconColor);
     }
+    
     Widget item = Container(
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,

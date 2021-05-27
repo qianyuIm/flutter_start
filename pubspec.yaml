@@ -22,6 +22,8 @@ dependencies:
   path_provider: ^2.0.1
   # 常用工具类库
   flustars: ^2.0.1
+  # 屏幕适配工具
+  flutter_screenutil: ^5.0.0+2
   # 获取当前设备信息
   device_info: ^2.0.1
   #  firebase : only VPN
