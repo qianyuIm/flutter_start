@@ -1,33 +1,11 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_start/config/constant.dart';
 
 class ThemeModel extends ChangeNotifier {
   static const kThemeColorIndex = 'kThemeColorIndex';
   static const kThemeUserDarkMode = 'kThemeUserDarkMode';
-  static const kFontIndex = 'kFontIndex';
-
-  /// 字体列表
-  static const fontValueList = [
-    'system',
-    'kuaile',
-    'IndieFlower',
-    'BalooBhai2',
-    'Inconsolata',
-    'Neucha',
-    'ComicNeue',
-    'CHOPS'
-  ];
-
-  /// 主题颜色列表
-  static const List<MaterialColor> themeColors = [
-    Colors.red,
-    Colors.green,
-    Colors.yellow,
-    Colors.green,
-    Colors.blue,
-    Colors.indigo,
-    Colors.purple
-  ];
+  static const kFontFamily = 'kFontFamily';
 
   /// 用户选择的明暗模式
   late bool _isUserDarkMode;
@@ -35,31 +13,67 @@ class ThemeModel extends ChangeNotifier {
   /// 当前主题颜色
   late MaterialColor _themeColor;
 
-  /// 当前字体索引
-  late int _fontIndex;
+  /// 当前字体
+  late String _fontFamily;
 
   ThemeModel() {
     _isUserDarkMode = SpUtil.getBool(kThemeUserDarkMode)!;
-    _themeColor = themeColors[SpUtil.getInt(kThemeColorIndex)!];
-    _fontIndex = SpUtil.getInt(kFontIndex)!;
+    _themeColor = ConstantUtil.themeColorSupport.keys.toList()[SpUtil.getInt(kThemeColorIndex)!];
+    _fontFamily = SpUtil.getString(kFontFamily,defValue: 'system')!;
   }
-  int get fontIndex => _fontIndex;
 
-  themeData({bool isPlatformDarkMode: false}) {
+  String get fontFamily => _fontFamily;
+  MaterialColor get themeColor => _themeColor;
+
+    /// 切换指定色彩
+  ///
+  /// 没有传[brightness]就不改变brightness,color同理
+  void switchTheme({bool? userDarkMode, MaterialColor? color}) {
+    _isUserDarkMode = userDarkMode ?? _isUserDarkMode;
+    _themeColor = color ?? _themeColor;
+    notifyListeners();
+    _saveTheme2Storage(_isUserDarkMode, _themeColor);
+  }
+  /// 切换字体
+  void switchFontFamily({required String fontFamily}){
+    _fontFamily = fontFamily;
+    notifyListeners();
+    _saveFontFamily2Storage(_fontFamily);
+  }
+  /// 自定义 themeData
+  ThemeData themeData({bool isPlatformDarkMode: true}) {
     var isDark = isPlatformDarkMode || _isUserDarkMode;
     Brightness brightness = isDark ? Brightness.dark : Brightness.light;
 
     var themeColor = _themeColor;
-    var accentColor = isDark ? themeColor[700] : _themeColor;
-
+    /// 次级颜色
+    var accentColor = isDark ? themeColor[800] : _themeColor;
+    /// TODO: 不设置primaryColor 的原因是 黑暗模式
     var themeData = ThemeData(
         brightness: brightness,
         primaryColorBrightness: Brightness.dark,
         accentColorBrightness: Brightness.dark,
         primarySwatch: themeColor,
         accentColor: accentColor,
-        splashColor: themeColor.withAlpha(50),
-        fontFamily: fontValueList[fontIndex]);
+        /// 自定义 tabbar 背景色
+        bottomAppBarColor: isDark ? Colors.grey[800]! : Colors.white,
+        
+        /// 内容背景色
+        // scaffoldBackgroundColor: isDark ? Colors.grey[850]! : Colors.grey[50]!,
+        // unselectedWidgetColor: Colors.yellow,
+        fontFamily: _fontFamily);
+
     return themeData;
+  }
+  /// 数据持久化到shared preferences
+  void _saveTheme2Storage(bool userDarkMode, MaterialColor themeColor) async {
+    var index = ConstantUtil.themeColorSupport.keys.toList().indexOf(themeColor);  
+    await Future.wait([
+      SpUtil.putBool(kThemeUserDarkMode, userDarkMode)!,
+      SpUtil.putInt(kThemeColorIndex, index)!
+    ]);
+  }
+  void _saveFontFamily2Storage(String fontFamily) async {
+      SpUtil.putString(kFontFamily, fontFamily);
   }
 }

@@ -1,6 +1,15 @@
 {
+    "tabHome": "Home",
+    "tabUser": "Me",
     "splashSkip": "Skip",
     "autoBySystem": "Auto",
     "setting": "Setting",
-    "dataManagement": "Data Management"
+    "dataManagement": "Data Management",
+    "themeColorSettings": "Theme Color Settings",
+    "fontSetting": "Font Setting",
+    "languageSetting": "Language Setting",
+    "languageExpansionTile": "Language"
+
+
+
 }

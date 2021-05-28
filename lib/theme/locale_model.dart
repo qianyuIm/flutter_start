@@ -1,11 +1,11 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_start/config/constant.dart';
 import 'package:flutter_start/generated/l10n.dart';
 
 class LocaleModel extends ChangeNotifier {
 
-  static const localeValueList = ['', 'zh-CN', 'en'];
-  //
+  
   static const kLocaleIndex = 'kLocaleIndex';
 
   late int _localeIndex;
@@ -14,7 +14,7 @@ class LocaleModel extends ChangeNotifier {
 
   Locale? get locale {
     if (_localeIndex > 0) {
-      var value = localeValueList[_localeIndex].split("-");
+      var value = ConstantUtil.localeSupport[_localeIndex].split("-");
       return Locale(value[0], value.length == 2 ? value[1] : '');
     }
     // 跟随系统
@@ -26,10 +26,10 @@ class LocaleModel extends ChangeNotifier {
     
   }
 
-  switchLocale(int index) {
-    _localeIndex = index;
+  switchLocale(int? index) {
+    _localeIndex = index ?? _localeIndex;
     notifyListeners();
-    SpUtil.putInt(kLocaleIndex, index);
+    SpUtil.putInt(kLocaleIndex, _localeIndex);
   }
 
   static String localeName(index, context) {

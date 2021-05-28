@@ -20,7 +20,9 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      
+      appBar: AppBar(
+        title: Text('首页'),
+      ),
       body: ListView.builder(
         itemCount: 40,
         itemExtent: 40,

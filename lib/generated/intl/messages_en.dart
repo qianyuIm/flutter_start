@@ -24,7 +24,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "autoBySystem": MessageLookupByLibrary.simpleMessage("Auto"),
         "dataManagement":
             MessageLookupByLibrary.simpleMessage("Data Management"),
+        "fontSetting": MessageLookupByLibrary.simpleMessage("Font Setting"),
+        "languageExpansionTile":
+            MessageLookupByLibrary.simpleMessage("Language"),
+        "languageSetting":
+            MessageLookupByLibrary.simpleMessage("Language Setting"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
-        "splashSkip": MessageLookupByLibrary.simpleMessage("Skip")
+        "splashSkip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "tabHome": MessageLookupByLibrary.simpleMessage("Home"),
+        "tabUser": MessageLookupByLibrary.simpleMessage("Me"),
+        "themeColorSettings":
+            MessageLookupByLibrary.simpleMessage("Theme Color Settings")
       };
 }

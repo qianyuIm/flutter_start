@@ -1,6 +1,12 @@
 {
+    "tabHome": "首页",
+    "tabUser": "我的",
     "splashSkip": "跳过",
     "autoBySystem": "跟随系统",
     "setting": "应用设置",
-    "dataManagement": "数据管理"
+    "dataManagement": "数据管理",
+    "themeColorSettings": "主题色设置",
+    "fontSetting": "字体设置",
+    "languageSetting": "语言设置",
+    "languageExpansionTile": "多语言"
 }

@@ -23,7 +23,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "autoBySystem": MessageLookupByLibrary.simpleMessage("跟随系统"),
         "dataManagement": MessageLookupByLibrary.simpleMessage("数据管理"),
+        "fontSetting": MessageLookupByLibrary.simpleMessage("字体设置"),
+        "languageExpansionTile": MessageLookupByLibrary.simpleMessage("多语言"),
+        "languageSetting": MessageLookupByLibrary.simpleMessage("语言设置"),
         "setting": MessageLookupByLibrary.simpleMessage("应用设置"),
-        "splashSkip": MessageLookupByLibrary.simpleMessage("跳过")
+        "splashSkip": MessageLookupByLibrary.simpleMessage("跳过"),
+        "tabHome": MessageLookupByLibrary.simpleMessage("首页"),
+        "tabUser": MessageLookupByLibrary.simpleMessage("我的"),
+        "themeColorSettings": MessageLookupByLibrary.simpleMessage("主题色设置")
       };
 }

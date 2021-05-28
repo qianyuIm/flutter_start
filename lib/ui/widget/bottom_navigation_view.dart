@@ -41,9 +41,11 @@ class _BottomBarViewState extends State<BottomBarView>
 
   @override
   Widget build(BuildContext context) {
+    var accentColor = Theme.of(context).accentColor;
+    var bottomAppBarColor = Theme.of(context).bottomAppBarColor;
     return Container(
         height: initHeight,
-        color: Colors.green,
+        color: Colors.transparent,
         child: Column(
           children: [
             const Expanded(child: SizedBox()),
@@ -56,7 +58,7 @@ class _BottomBarViewState extends State<BottomBarView>
                     return Transform(
                       transform: Matrix4.translationValues(0.0, 0.0, 0.0),
                       child: PhysicalShape(
-                        color: Colors.purple,
+                        color: bottomAppBarColor,
                         elevation: 16.0,
                         clipper: TabClipper(
                           radius: Tween<double>(begin: 0.0, end: 1.0)
@@ -123,9 +125,7 @@ class _BottomBarViewState extends State<BottomBarView>
                             /// 安全区域
                             SizedBox(
                               height: ScreenUtil().bottomBarHeight,
-                              child: Container(
-                                color: Colors.orange,
-                              ),
+                              
                             )
                           ],
                         ),
@@ -144,7 +144,7 @@ class _BottomBarViewState extends State<BottomBarView>
                     height: tabClipperHeight,
                     child: Container(
                       alignment: Alignment.topCenter,
-                      color: Colors.blue,
+                      color: Colors.transparent,
                       child: SizedBox(
                         width: tabClipperRadius * 2,
                         height: tabClipperRadius * 2,
@@ -158,23 +158,23 @@ class _BottomBarViewState extends State<BottomBarView>
                                     curve: Curves.fastOutSlowIn)),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.red,
+                                color: accentColor,
                                 gradient: LinearGradient(
-                                    colors: [Colors.red, Colors.red[900]!],
+                                    colors: [accentColor.withAlpha(40), accentColor,accentColor.withAlpha(100)],
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight),
                                 shape: BoxShape.circle,
                                 boxShadow: <BoxShadow>[
                                   BoxShadow(
-                                      color: Colors.orange.withOpacity(0.4),
-                                      offset: const Offset(8.0, 16.0),
-                                      blurRadius: 16.0),
+                                      color: accentColor.withOpacity(0.3),
+                                      offset: const Offset(8, 8.0),
+                                      blurRadius: 8.0),
                                 ],
                               ),
                               child: Material(
                                 color: Colors.transparent,
                                 child: InkWell(
-                                  splashColor: Colors.white.withOpacity(0.1),
+                                  splashColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   focusColor: Colors.transparent,
                                   onTap: () {

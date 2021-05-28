@@ -4,6 +4,10 @@ import 'package:flutter_start/router/router_utils.dart';
 import 'package:flutter_start/ui/page/splash/splash_page.dart';
 import 'package:flutter_start/ui/page/tab/tab_navigator.dart';
 import 'package:flutter_start/ui/page/tab/tab_navigator1.dart';
+import 'package:flutter_start/ui/page/tab/tab_navigator2.dart';
+import 'package:flutter_start/ui/page/user/setting/font_setting.dart';
+import 'package:flutter_start/ui/page/user/setting/language_setting.dart';
+import 'package:flutter_start/ui/page/user/setting/theme_color_setting.dart';
 
 class MyRouterName {
   /// 闪屏页
@@ -12,6 +16,13 @@ class MyRouterName {
   static const String tab = '/';
   /// 应用设置页面
   static const String setting = 'settingPage';
+  /// 主题色设置
+  static const String theme_color_setting = 'ThemeColorSettingPage';
+  /// 字体设置
+  static const String font_setting = 'FontSettingPage';
+  ///语言设置
+  static const String language_setting = 'LanguageSettingPage';
+
   static const String demo = 'demo';
 }
 
@@ -23,7 +34,17 @@ class MyRouter {
       case MyRouterName.tab:
         return NoAnimRouteBuilder(TabNavigator1());
       case MyRouterName.setting:
-        return Left2RightRouter(SplashPage());
+        return Right2LeftRouter(SplashPage());
+      case MyRouterName.theme_color_setting:
+        return Right2LeftRouter(ThemeColorSettingPage());
+      case MyRouterName.font_setting:
+        return Right2LeftRouter(FontSettingPage());
+      case MyRouterName.language_setting:
+        return Right2LeftRouter(LanguageSettingPage());
+
+
+
+
       case MyRouterName.demo:
       return Left2RightRouter(SplashPage());
       default:
