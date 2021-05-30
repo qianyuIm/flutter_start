@@ -27,7 +27,7 @@ dependencies:
   # 获取当前设备信息
   device_info: ^2.0.1
   #  firebase : only VPN
-  firebase_storage: ^8.1.0
+  # firebase_storage: ^8.1.0
   # 网络
   dio: ^4.0.0
   # ui

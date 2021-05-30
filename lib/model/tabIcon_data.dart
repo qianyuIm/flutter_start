@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:flutter_start/generated/l10n.dart';
 
 class TabIconData {
   TabIconData(
@@ -12,19 +15,13 @@ class TabIconData {
   final int index;
   late bool isSelected;
   final String label;
-   AnimationController? animationController;
+  AnimationController? animationController;
 
-  // final Color iconColor;
-  // final Color selectedIconColor;
-  // final TextStyle labelStyle;
-  // final TextStyle selectedLabelStyle;
 
   static List<TabIconData> tabIconsList = <TabIconData>[
-    TabIconData(icon: Icons.home, label: '首页', index: 0, isSelected: false,animationController: null),
-    TabIconData(icon: Icons.home, label: '首页', index: 0, isSelected: false,animationController: null),
-    TabIconData(icon: Icons.insert_emoticon, label: '我的', index: 1, isSelected: false,animationController: null),
-    TabIconData(icon: Icons.insert_emoticon, label: '我的', index: 1, isSelected: false,animationController: null),
-
-
+    TabIconData(icon: Icons.home, label: S.current.tabHome, index: 0, isSelected: false,animationController: null),
+    TabIconData(icon: Icons.home, label: S.current.tabHome, index: 1, isSelected: false,animationController: null),
+    TabIconData(icon: Icons.insert_emoticon, label: S.current.tabUser, index: 2, isSelected: false,animationController: null),
+    TabIconData(icon: Icons.insert_emoticon, label: S.current.tabHome, index: 3, isSelected: false,animationController: null),
   ];
 }

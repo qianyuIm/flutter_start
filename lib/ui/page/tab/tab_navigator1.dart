@@ -30,6 +30,7 @@ class _TabNavigator1State extends State<TabNavigator1>
     tabIconsList.forEach((element) {
       element.isSelected = false;
     });
+    tabIconsList[0].isSelected = true;
     _animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 600));
 
@@ -64,54 +65,13 @@ class _TabNavigator1State extends State<TabNavigator1>
     );
   }
 
-  // Widget _buildBottomBar() {
-  //   var yellowBox = Container(
-  //     color: Colors.yellow,
-  //     height: 100,
-  //     width: 100,
-  //   );
-
-  //   var redBox = Container(
-  //     color: Colors.red,
-  //     height: 90,
-  //     width: 90,
-  //   );
-
-  //   var greenBox = Container(
-  //     color: Colors.red,
-  //     height: 80,
-  //     width: ScreenUtil().screenWidth ,
-  //   );
-
-  //   var cyanBox = Container(
-  //     color: Colors.cyanAccent,
-  //     height: 70,
-  //     width: 70,
-  //   );
-
-  //   return Container(
-  //       width: ScreenUtil().scaleWidth,
-  //       height: 120,
-  //       color: Colors.black,
-  //       child: Stack(
-  //         children: <Widget>[
-  //           // yellowBox,
-  //           // redBox,
-  //           Positioned(top: 20, child: greenBox),
-
-  //           Positioned(
-  //             child: cyanBox,
-  //             bottom: 10,
-  //             right: 10,
-  //           )
-  //         ],
-  //       ));
-  // }
+  
   Widget _buildBottomBar() {
     return BottomBarView(
       tabIconsList: tabIconsList,
       changeIndex: (index) {
         print("点击了$index");
+        _pageController.jumpToPage(index);
       },
       searchClick: () {
         print("点击了search");

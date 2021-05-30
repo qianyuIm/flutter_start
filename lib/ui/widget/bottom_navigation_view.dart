@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_start/config/inch.dart';
 import 'package:flutter_start/model/tabIcon_data.dart';
+import 'package:flutter_start/theme/theme_model.dart';
 import 'dart:math' as math;
+
+import 'package:provider/provider.dart';
 
 class BottomBarView extends StatefulWidget {
   const BottomBarView(
@@ -73,8 +76,8 @@ class _BottomBarViewState extends State<BottomBarView>
                             SizedBox(
                               height: tabbarHeight,
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 8, right: 8),
+                                padding: const EdgeInsets.only(
+                                    left: 8, right: 8, top: 4),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -116,7 +119,7 @@ class _BottomBarViewState extends State<BottomBarView>
                                           setRemoveAllSelection(
                                               widget.tabIconsList[3]);
                                           widget.changeIndex(3);
-                                        }),
+                                        })
                                   ],
                                 ),
                               ),
@@ -125,7 +128,6 @@ class _BottomBarViewState extends State<BottomBarView>
                             /// 安全区域
                             SizedBox(
                               height: ScreenUtil().bottomBarHeight,
-                              
                             )
                           ],
                         ),
@@ -160,7 +162,11 @@ class _BottomBarViewState extends State<BottomBarView>
                               decoration: BoxDecoration(
                                 color: accentColor,
                                 gradient: LinearGradient(
-                                    colors: [accentColor.withAlpha(40), accentColor,accentColor.withAlpha(100)],
+                                    colors: [
+                                      accentColor.withAlpha(40),
+                                      accentColor,
+                                      accentColor.withAlpha(100)
+                                    ],
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight),
                                 shape: BoxShape.circle,
@@ -225,123 +231,37 @@ class TabIcons extends StatefulWidget {
 
 class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
   @override
-  void initState() {
-    widget.tabIconData.animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 400),
-    )..addStatusListener((AnimationStatus status) {
-        if (status == AnimationStatus.completed) {
-          if (!mounted) return;
-          widget.removeAllSelect();
-          widget.tabIconData.animationController?.reverse();
-        }
-      });
-    super.initState();
-  }
-
-  void setAnimation() {
-    widget.tabIconData.animationController?.forward();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Center(
-        child: InkWell(
-          splashColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          onTap: () {
-            if (!widget.tabIconData.isSelected) {
-              setAnimation();
-            }
-          },
-          child: IgnorePointer(
-            child: Stack(
-              alignment: AlignmentDirectional.center,
-              children: <Widget>[
-                ScaleTransition(
-                  alignment: Alignment.center,
-                  scale: Tween<double>(begin: 0.88, end: 1.0).animate(
-                      CurvedAnimation(
-                          parent: widget.tabIconData.animationController!,
-                          curve:
-                              Interval(0.1, 1.0, curve: Curves.fastOutSlowIn))),
-                  child: Icon(
-                    widget.tabIconData.icon,
-                    size: 34,
-                  ),
-                ),
-                Positioned(
-                  top: 4,
-                  left: 6,
-                  right: 0,
-                  child: ScaleTransition(
-                    alignment: Alignment.center,
-                    scale: Tween<double>(begin: 0.0, end: 1.0).animate(
-                        CurvedAnimation(
-                            parent: widget.tabIconData.animationController!,
-                            curve: Interval(0.2, 1.0,
-                                curve: Curves.fastOutSlowIn))),
-                    child: Container(
-                      width: 8,
-                      height: 8,
-                      decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  left: 6,
-                  bottom: 8,
-                  child: ScaleTransition(
-                    alignment: Alignment.center,
-                    scale: Tween<double>(begin: 0.0, end: 1.0).animate(
-                        CurvedAnimation(
-                            parent: widget.tabIconData.animationController!,
-                            curve: Interval(0.5, 0.8,
-                                curve: Curves.fastOutSlowIn))),
-                    child: Container(
-                      width: 4,
-                      height: 4,
-                      decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 6,
-                  right: 8,
-                  bottom: 0,
-                  child: ScaleTransition(
-                    alignment: Alignment.center,
-                    scale: Tween<double>(begin: 0.0, end: 1.0).animate(
-                        CurvedAnimation(
-                            parent: widget.tabIconData.animationController!,
-                            curve: Interval(0.5, 0.6,
-                                curve: Curves.fastOutSlowIn))),
-                    child: Container(
-                      width: 6,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        color: Colors.yellow,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+        var selectedColor = Provider.of<ThemeModel>(context,listen: false).item.appBarTitleColor;
+
+    // var selectedColor = Theme.of(context).accentColor;
+    var color = Theme.of(context).unselectedWidgetColor;
+    var selectedStyle = TextStyle(color: selectedColor, fontSize: 14.0);
+    var style = TextStyle(color: color, fontSize: 12.0);
+    var isSelected = widget.tabIconData.isSelected;
+    var itemWidth = (ScreenUtil().screenWidth - 16) / 5;
+    return Container(
+      width: itemWidth,
+      child: InkWell(
+      onTap: () {
+        widget.removeAllSelect();
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            widget.tabIconData.icon,
+            size: 24,
+            color: isSelected ? selectedColor : color,
           ),
-        ),
+          Text(
+            widget.tabIconData.label,
+            style: isSelected ? selectedStyle : style,
+          ),
+        ],
       ),
+    ),
     );
   }
 }

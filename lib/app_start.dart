@@ -2,14 +2,14 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:firebase_core/firebase_core.dart' as firebase_core;
+// import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+// import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
 class AppStart {
    //初始化全局信息
   static Future init(VoidCallback callback) async {
     WidgetsFlutterBinding.ensureInitialized();
-    await firebase_core.Firebase.initializeApp();
+    // await firebase_core.Firebase.initializeApp();
     await SpUtil.getInstance();
     callback();
     if (Platform.isAndroid) {

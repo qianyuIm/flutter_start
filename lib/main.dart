@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_start/app_start.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_start/generated/l10n.dart';
 import 'package:flutter_start/router/router_manger.dart';
 import 'package:flutter_start/theme/locale_model.dart';
@@ -16,6 +16,7 @@ void main() {
     runApp(MyApp());
   });
 }
+final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -29,7 +30,6 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider<ThemeModel>(
             create: (context) => ThemeModel(),
           ),
-
           /// 语言
           ChangeNotifierProvider<LocaleModel>(
             create: (context) => LocaleModel(),
@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
             return RefreshConfiguration(
               hideFooterWhenNotFull: true,
               child: MaterialApp(
+                navigatorKey: navigatorKey,
                 debugShowCheckedModeBanner: false,
                 theme: themeModel.themeData(),
                 darkTheme: themeModel.themeData(isPlatformDarkMode: true),
