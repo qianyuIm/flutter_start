@@ -22,10 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "autoBySystem": MessageLookupByLibrary.simpleMessage("跟随系统"),
+        "darkMode": MessageLookupByLibrary.simpleMessage("深色模式"),
         "dataManagement": MessageLookupByLibrary.simpleMessage("数据管理"),
         "fontSetting": MessageLookupByLibrary.simpleMessage("字体设置"),
         "languageExpansionTile": MessageLookupByLibrary.simpleMessage("多语言"),
         "languageSetting": MessageLookupByLibrary.simpleMessage("语言设置"),
+        "normalMode": MessageLookupByLibrary.simpleMessage("普通模式"),
         "setting": MessageLookupByLibrary.simpleMessage("应用设置"),
         "splashSkip": MessageLookupByLibrary.simpleMessage("跳过"),
         "tabHome": MessageLookupByLibrary.simpleMessage("首页"),

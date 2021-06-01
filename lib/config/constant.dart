@@ -24,6 +24,8 @@ class ConstantUtil {
     'CHOPS'
   ];
   /// 语言支持
-  static final localeSupport = ['', 'zh-CN', 'en'];
+  static final localeSupport = ['auto', 'zh-CN', 'en'];
+  /// 深色模式支持
+  static final darkModeSupport = ['auto', 'normal', 'dark'];
 
 }

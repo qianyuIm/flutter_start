@@ -120,6 +120,26 @@ class S {
     );
   }
 
+  /// `Dark Mode`
+  String get darkMode {
+    return Intl.message(
+      'Dark Mode',
+      name: 'darkMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `normal Mode`
+  String get normalMode {
+    return Intl.message(
+      'normal Mode',
+      name: 'normalMode',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Font Setting`
   String get fontSetting {
     return Intl.message(

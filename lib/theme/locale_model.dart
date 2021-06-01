@@ -44,4 +44,5 @@ class LocaleModel extends ChangeNotifier {
         return '';
     }
   }
+  
 }

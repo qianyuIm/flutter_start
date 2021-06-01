@@ -41,7 +41,7 @@ class LanguageSettingPage extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: ConstantUtil.localeSupport.length,
                 itemBuilder: (context, index) {
-                  var locale = Provider.of<LocaleModel>(context);
+                  var locale = Provider.of<LocaleModel>(context,listen: false);
                   return RadioListTile<int>(
                     value: index,
                     onChanged: (value) {

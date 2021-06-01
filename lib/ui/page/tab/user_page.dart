@@ -6,7 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart' as sp;
 import 'package:flutter_start/config/data.dart';
 import 'package:flutter_start/generated/l10n.dart';
 import 'package:flutter_start/router/router_manger.dart';
+import 'package:flutter_start/theme/theme_model.dart';
 import 'package:flutter_start/ui/widget/image_load_view.dart';
+import 'package:provider/provider.dart';
 
 class UserPage extends StatefulWidget {
   @override
@@ -18,11 +20,11 @@ class _UserPageState extends State<UserPage>
   @override
   bool get wantKeepAlive => true;
 
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
-var style = DefaultTextStyle.of(context);
-
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('我的',),

@@ -44,8 +44,9 @@ class _BottomBarViewState extends State<BottomBarView>
 
   @override
   Widget build(BuildContext context) {
-    var accentColor = Theme.of(context).accentColor;
-    var bottomAppBarColor = Theme.of(context).bottomAppBarColor;
+    var bottomNavigationBarTheme = Theme.of(context).bottomNavigationBarTheme;
+    var selectedItemColor = bottomNavigationBarTheme.selectedItemColor!;
+    var backgroundColor = bottomNavigationBarTheme.backgroundColor!;
     return Container(
         height: initHeight,
         color: Colors.transparent,
@@ -61,7 +62,7 @@ class _BottomBarViewState extends State<BottomBarView>
                     return Transform(
                       transform: Matrix4.translationValues(0.0, 0.0, 0.0),
                       child: PhysicalShape(
-                        color: bottomAppBarColor,
+                        color: backgroundColor,
                         elevation: 16.0,
                         clipper: TabClipper(
                           radius: Tween<double>(begin: 0.0, end: 1.0)
@@ -160,19 +161,19 @@ class _BottomBarViewState extends State<BottomBarView>
                                     curve: Curves.fastOutSlowIn)),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: accentColor,
+                                color: selectedItemColor,
                                 gradient: LinearGradient(
                                     colors: [
-                                      accentColor.withAlpha(40),
-                                      accentColor,
-                                      accentColor.withAlpha(100)
+                                      selectedItemColor.withAlpha(40),
+                                      selectedItemColor,
+                                      selectedItemColor.withAlpha(100)
                                     ],
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight),
                                 shape: BoxShape.circle,
                                 boxShadow: <BoxShadow>[
                                   BoxShadow(
-                                      color: accentColor.withOpacity(0.3),
+                                      color: selectedItemColor.withOpacity(0.3),
                                       offset: const Offset(8, 8.0),
                                       blurRadius: 8.0),
                                 ],
@@ -231,37 +232,124 @@ class TabIcons extends StatefulWidget {
 
 class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
   @override
+  void initState() {
+    /// 点击动画
+    widget.tabIconData.animationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 400))
+          ..addStatusListener((AnimationStatus status) {
+            if (status == AnimationStatus.completed) {
+              if (!mounted) return;
+              widget.removeAllSelect();
+              widget.tabIconData.animationController?.reverse();
+            }
+          });
+
+    super.initState();
+  }
+
+  void setAnimation() {
+    widget.tabIconData.animationController?.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
-        var selectedColor = Provider.of<ThemeModel>(context,listen: false).item.appBarTitleColor;
-
-    // var selectedColor = Theme.of(context).accentColor;
-    var color = Theme.of(context).unselectedWidgetColor;
-    var selectedStyle = TextStyle(color: selectedColor, fontSize: 14.0);
-    var style = TextStyle(color: color, fontSize: 12.0);
+    var bottomNavigationBarTheme = Theme.of(context).bottomNavigationBarTheme;
+    var selectedColor = bottomNavigationBarTheme.selectedItemColor;
+    var color = bottomNavigationBarTheme.unselectedItemColor;
+    var selectedStyle = bottomNavigationBarTheme.selectedLabelStyle;
+    var style = bottomNavigationBarTheme.unselectedLabelStyle;
     var isSelected = widget.tabIconData.isSelected;
     var itemWidth = (ScreenUtil().screenWidth - 16) / 5;
     return Container(
       width: itemWidth,
       child: InkWell(
-      onTap: () {
-        widget.removeAllSelect();
-      },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            widget.tabIconData.icon,
-            size: 24,
-            color: isSelected ? selectedColor : color,
-          ),
-          Text(
-            widget.tabIconData.label,
-            style: isSelected ? selectedStyle : style,
-          ),
-        ],
-      ),
-    ),
+          onTap: () {
+            if (!widget.tabIconData.isSelected) {
+              setAnimation();
+            }
+          },
+          child: IgnorePointer(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                ScaleTransition(
+                  scale: Tween<double>(begin: 0.88, end: 1.0).animate(
+                    CurvedAnimation(
+                        parent: widget.tabIconData.animationController!,
+                        curve: Interval(0.1, 1.0, curve: Curves.fastOutSlowIn)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        widget.tabIconData.icon,
+                        size: 26,
+                        color: isSelected ? selectedColor : color,
+                      ),
+                      Text(
+                        widget.tabIconData.label,
+                        style: isSelected ? selectedStyle : style,
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                    top: 4,
+                    right: 0,
+                    left: 6,
+                    child: ScaleTransition(
+                      alignment: Alignment.center,
+                      scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                              parent: widget.tabIconData.animationController!,
+                              curve: Interval(0.2, 1.0,
+                                  curve: Curves.fastOutSlowIn))),
+                      child: Container(
+                        width: 8,
+                        height: 8,
+                        decoration: BoxDecoration(
+                            color: selectedColor, shape: BoxShape.circle),
+                      ),
+                    )),
+                Positioned(
+                    top: 0,
+                    bottom: 8,
+                    left: 20,
+                    child: ScaleTransition(
+                      alignment: Alignment.center,
+                      scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                              parent: widget.tabIconData.animationController!,
+                              curve: Interval(0.2, 1.0,
+                                  curve: Curves.fastOutSlowIn))),
+                      child: Container(
+                        width: 4,
+                        height: 4,
+                        decoration: BoxDecoration(
+                            color: selectedColor, shape: BoxShape.circle),
+                      ),
+                    )),
+                Positioned(
+                    top: 6,
+                    bottom: 0,
+                    right: 16,
+                    child: ScaleTransition(
+                      alignment: Alignment.center,
+                      scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+                          CurvedAnimation(
+                              parent: widget.tabIconData.animationController!,
+                              curve: Interval(0.2, 1.0,
+                                  curve: Curves.fastOutSlowIn))),
+                      child: Container(
+                        width: 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                            color: selectedColor, shape: BoxShape.circle),
+                      ),
+                    )),
+              ],
+            ),
+          )),
     );
   }
 }

@@ -19,9 +19,11 @@ void main() {
 final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     return ScreenUtilInit(
       designSize: Size(375, 667),
       builder: () => MultiProvider(
@@ -39,11 +41,12 @@ class MyApp extends StatelessWidget {
           builder: (context, themeModel, localeModel, child) {
             return RefreshConfiguration(
               hideFooterWhenNotFull: true,
-              child: MaterialApp(
+              child:MaterialApp(
                 navigatorKey: navigatorKey,
                 debugShowCheckedModeBanner: false,
+                darkTheme: themeModel.themeData(isDarkMode: true),
                 theme: themeModel.themeData(),
-                darkTheme: themeModel.themeData(isPlatformDarkMode: true),
+                themeMode: themeModel.getThemeMode(),
                 locale: localeModel.locale,
                 localizationsDelegates: const [
                   S.delegate,

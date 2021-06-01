@@ -6,6 +6,8 @@
     "setting": "Setting",
     "dataManagement": "Data Management",
     "themeColorSettings": "Theme Color Settings",
+    "darkMode": "Dark Mode",
+    "normalMode": "normal Mode",
     "fontSetting": "Font Setting",
     "languageSetting": "Language Setting",
     "languageExpansionTile": "Language"

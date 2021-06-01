@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_start/router/router_utils.dart';
 import 'package:flutter_start/ui/page/splash/splash_page.dart';
 import 'package:flutter_start/ui/page/tab/tab_navigator.dart';
-import 'package:flutter_start/ui/page/tab/tab_navigator1.dart';
-import 'package:flutter_start/ui/page/tab/tab_navigator2.dart';
 import 'package:flutter_start/ui/page/user/setting/font_setting.dart';
 import 'package:flutter_start/ui/page/user/setting/language_setting.dart';
 import 'package:flutter_start/ui/page/user/setting/theme_color_setting.dart';
@@ -32,7 +30,7 @@ class MyRouter {
       case MyRouterName.splash:
         return NoAnimRouteBuilder(SplashPage());
       case MyRouterName.tab:
-        return NoAnimRouteBuilder(TabNavigator1());
+        return NoAnimRouteBuilder(TabNavigator());
       case MyRouterName.setting:
         return Right2LeftRouter(SplashPage());
       case MyRouterName.theme_color_setting:

@@ -6,6 +6,8 @@
     "setting": "应用设置",
     "dataManagement": "数据管理",
     "themeColorSettings": "主题色设置",
+    "darkMode": "深色模式",
+    "normalMode": "普通模式",
     "fontSetting": "字体设置",
     "languageSetting": "语言设置",
     "languageExpansionTile": "多语言"
