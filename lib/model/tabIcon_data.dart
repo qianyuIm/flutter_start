@@ -18,10 +18,12 @@ class TabIconData {
   AnimationController? animationController;
 
 
-  static List<TabIconData> tabIconsList = <TabIconData>[
-    TabIconData(icon: Icons.home, label: S.current.tabHome, index: 0, isSelected: false,animationController: null),
-    TabIconData(icon: Icons.home, label: S.current.tabHome, index: 1, isSelected: false,animationController: null),
-    TabIconData(icon: Icons.insert_emoticon, label: S.current.tabUser, index: 2, isSelected: false,animationController: null),
-    TabIconData(icon: Icons.insert_emoticon, label: S.current.tabHome, index: 3, isSelected: false,animationController: null),
+  static List<TabIconData> tabIconsList(BuildContext context) {
+    return [
+    TabIconData(icon: Icons.home, label: S.of(context).tabHome, index: 0, isSelected: false,animationController: null),
+    TabIconData(icon: Icons.home, label: S.of(context).tabHome, index: 1, isSelected: false,animationController: null),
+    TabIconData(icon: Icons.insert_emoticon, label: S.of(context).tabUser, index: 2, isSelected: false,animationController: null),
+    TabIconData(icon: Icons.insert_emoticon, label: S.of(context).tabUser, index: 3, isSelected: false,animationController: null),
   ];
+  }
 }

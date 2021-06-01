@@ -43,6 +43,12 @@ class _BottomBarViewState extends State<BottomBarView>
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var bottomNavigationBarTheme = Theme.of(context).bottomNavigationBarTheme;
     var selectedItemColor = bottomNavigationBarTheme.selectedItemColor!;
@@ -85,20 +91,22 @@ class _BottomBarViewState extends State<BottomBarView>
 
                                   /// tabIcons
                                   children: [
-                                    TabIcons(
-                                        tabIconData: widget.tabIconsList[0],
-                                        removeAllSelect: () {
-                                          setRemoveAllSelection(
-                                              widget.tabIconsList[0]);
-                                          widget.changeIndex(0);
-                                        }),
-                                    TabIcons(
-                                        tabIconData: widget.tabIconsList[1],
-                                        removeAllSelect: () {
-                                          setRemoveAllSelection(
-                                              widget.tabIconsList[1]);
-                                          widget.changeIndex(1);
-                                        }),
+                                    Expanded(
+                                        child: TabIcons(
+                                            tabIconData: widget.tabIconsList[0],
+                                            removeAllSelect: () {
+                                              setRemoveAllSelection(
+                                                  widget.tabIconsList[0]);
+                                              widget.changeIndex(0);
+                                            })),
+                                    Expanded(
+                                        child: TabIcons(
+                                            tabIconData: widget.tabIconsList[1],
+                                            removeAllSelect: () {
+                                              setRemoveAllSelection(
+                                                  widget.tabIconsList[1]);
+                                              widget.changeIndex(1);
+                                            })),
                                     SizedBox(
                                       width: Tween<double>(begin: 0.0, end: 1.0)
                                               .animate(CurvedAnimation(
@@ -107,20 +115,22 @@ class _BottomBarViewState extends State<BottomBarView>
                                               .value *
                                           64.0,
                                     ),
-                                    TabIcons(
-                                        tabIconData: widget.tabIconsList[2],
-                                        removeAllSelect: () {
-                                          setRemoveAllSelection(
-                                              widget.tabIconsList[2]);
-                                          widget.changeIndex(2);
-                                        }),
-                                    TabIcons(
-                                        tabIconData: widget.tabIconsList[3],
-                                        removeAllSelect: () {
-                                          setRemoveAllSelection(
-                                              widget.tabIconsList[3]);
-                                          widget.changeIndex(3);
-                                        })
+                                    Expanded(
+                                        child: TabIcons(
+                                            tabIconData: widget.tabIconsList[2],
+                                            removeAllSelect: () {
+                                              setRemoveAllSelection(
+                                                  widget.tabIconsList[2]);
+                                              widget.changeIndex(2);
+                                            })),
+                                    Expanded(
+                                        child: TabIcons(
+                                            tabIconData: widget.tabIconsList[3],
+                                            removeAllSelect: () {
+                                              setRemoveAllSelection(
+                                                  widget.tabIconsList[3]);
+                                              widget.changeIndex(3);
+                                            })),
                                   ],
                                 ),
                               ),
@@ -221,11 +231,11 @@ class _BottomBarViewState extends State<BottomBarView>
 
 class TabIcons extends StatefulWidget {
   const TabIcons(
-      {Key? key, required this.tabIconData, required this.removeAllSelect})
+      {Key? key, required this.tabIconData,  this.removeAllSelect})
       : super(key: key);
 
   final TabIconData tabIconData;
-  final Function removeAllSelect;
+  final Function? removeAllSelect;
   @override
   _TabIconsState createState() => _TabIconsState();
 }
@@ -239,12 +249,21 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
           ..addStatusListener((AnimationStatus status) {
             if (status == AnimationStatus.completed) {
               if (!mounted) return;
-              widget.removeAllSelect();
+              if (widget.removeAllSelect != null) {
+widget.removeAllSelect!();
+              }
+              
               widget.tabIconData.animationController?.reverse();
             }
           });
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.tabIconData.animationController?.dispose();
+    super.dispose();
   }
 
   void setAnimation() {

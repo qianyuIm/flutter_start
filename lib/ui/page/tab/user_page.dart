@@ -27,7 +27,7 @@ class _UserPageState extends State<UserPage>
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('我的',),
+        title: Text(S.of(context).tabHome),
         leading: Text(''),
       ),
       body: Column(

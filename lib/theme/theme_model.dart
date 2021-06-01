@@ -6,20 +6,6 @@ import 'package:flutter_start/generated/l10n.dart';
 import 'package:flutter_start/help/theme_helper.dart';
 import 'package:provider/provider.dart';
 
-class ThemeItem {
-  /// tabbar 选中的颜色
-  final Color? tabBarTitleSelectedColor;
-
-  /// tabbar未选中的颜色
-  final Color? tabBarTitleUnselectedColor;
-
-  ThemeItem({this.tabBarTitleSelectedColor, this.tabBarTitleUnselectedColor});
-
-  static ThemeItem of(BuildContext context, {bool listen = false}) {
-    return Provider.of<ThemeModel>(context, listen: listen).item;
-  }
-}
-
 class ThemeModel extends ChangeNotifier {
   static const kThemeColorIndex = 'kThemeColorIndex';
   static const kThemeUserDarkMode = 'kThemeUserDarkMode';
@@ -34,14 +20,12 @@ class ThemeModel extends ChangeNotifier {
   /// 当前字体
   late String _fontFamily;
 
-  late ThemeItem item;
 
   ThemeModel() {
     _darkModeIndex = SpUtil.getInt(kThemeUserDarkMode)!;
     _themeColor = ConstantUtil.themeColorSupport.keys
         .toList()[SpUtil.getInt(kThemeColorIndex)!];
     _fontFamily = SpUtil.getString(kFontFamily, defValue: 'system')!;
-    item = ThemeItem();
   }
 
   String get fontFamily => _fontFamily;
@@ -99,7 +83,7 @@ class ThemeModel extends ChangeNotifier {
             unselectedItemColor: isDarkMode ? Colors.white70 : Colors.black54,
             selectedLabelStyle: TextStyle(color: isDarkMode ? themeColor[700] : themeColor,
             fontSize: 14,
-            fontFamily: fontFamily),
+            fontFamily: _fontFamily),
             unselectedLabelStyle: TextStyle(color: isDarkMode ? Colors.white70 : Colors.black54,fontSize: 12),
         ),
         /// 导航条
