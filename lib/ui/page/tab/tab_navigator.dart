@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_start/config/inch.dart';
 import 'package:flutter_start/model/tabIcon_data.dart';
 import 'package:flutter_start/ui/page/tab/home_page.dart';
 import 'package:flutter_start/ui/page/tab/user_page.dart';
@@ -20,13 +19,15 @@ class TabNavigator extends StatefulWidget {
 class _TabNavigatorState extends State<TabNavigator>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
-  late  List<TabIconData> tabIconsList;
+  late  List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   var _pageController = PageController();
   DateTime? _lastPressed;
-  late int _selectedIndex;
   @override
   void initState() {
-    _selectedIndex = 0;
+    tabIconsList.map((e) {
+      e.isSelected = false;
+    });
+    tabIconsList[0].isSelected = true;
     _animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 600));
 
@@ -42,11 +43,7 @@ class _TabNavigatorState extends State<TabNavigator>
   
   @override
   Widget build(BuildContext context) {
-    tabIconsList =  TabIconData.tabIconsList(context);
-    tabIconsList.forEach((element) {
-      element.isSelected = false;
-    });
-    tabIconsList[_selectedIndex].isSelected = true;
+    
     return Scaffold(
       bottomNavigationBar: _buildBottomBar(),
       body: WillPopScope(
@@ -74,7 +71,6 @@ class _TabNavigatorState extends State<TabNavigator>
       changeIndex: (index) {
         print("点击了$index");
         _pageController.jumpToPage(index);
-        _selectedIndex = index;
       },
       searchClick: () {
         print("点击了search");

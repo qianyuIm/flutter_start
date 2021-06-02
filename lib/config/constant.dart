@@ -15,17 +15,12 @@ class ConstantUtil {
   /// 字体列表
   static final fontFamilySupport = [
     'system',
-    'kuaile',
-    'IndieFlower',
-    'BalooBhai2',
-    'Inconsolata',
-    'Neucha',
-    'ComicNeue',
-    'CHOPS'
+    'KuaiLe',
+    
   ];
   /// 语言支持
   static final localeSupport = ['auto', 'zh-CN', 'en'];
   /// 深色模式支持
   static final darkModeSupport = ['auto', 'normal', 'dark'];
-
+  
 }

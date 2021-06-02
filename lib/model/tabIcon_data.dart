@@ -1,12 +1,10 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:flutter_start/generated/l10n.dart';
 
 class TabIconData {
   TabIconData(
       {required this.icon,
-      required this.label,
+      required this.messageText,
+      required this.name,
       required this.index,
       required this.isSelected,
       this.animationController});
@@ -14,16 +12,43 @@ class TabIconData {
   final IconData icon;
   final int index;
   late bool isSelected;
-  final String label;
+  final String messageText;
+  final String name;
   AnimationController? animationController;
 
-
-  static List<TabIconData> tabIconsList(BuildContext context) {
-    return [
-    TabIconData(icon: Icons.home, label: S.of(context).tabHome, index: 0, isSelected: false,animationController: null),
-    TabIconData(icon: Icons.home, label: S.of(context).tabHome, index: 1, isSelected: false,animationController: null),
-    TabIconData(icon: Icons.insert_emoticon, label: S.of(context).tabUser, index: 2, isSelected: false,animationController: null),
-    TabIconData(icon: Icons.insert_emoticon, label: S.of(context).tabUser, index: 3, isSelected: false,animationController: null),
-  ];
-  }
+  
+  static List<TabIconData> tabIconsList = 
+     [
+      TabIconData(
+          icon: Icons.home,
+          messageText:'Home',
+          name: 'tabHome',
+          index: 0,
+          isSelected: false,
+          animationController: null),
+      TabIconData(
+          icon: Icons.home,
+          messageText:'Home',
+          name: 'tabHome',
+          index: 1,
+          isSelected: false,
+          animationController: null),
+      TabIconData(
+        
+      
+          icon: Icons.insert_emoticon,
+          messageText:'Me',
+          name: 'tabUser',
+          index: 2,
+          isSelected: false,
+          animationController: null),
+      TabIconData(
+          icon: Icons.insert_emoticon,
+          messageText:'Me',
+          name: 'tabUser',
+          index: 3,
+          isSelected: false,
+          animationController: null),
+    ];
+  
 }

@@ -1,6 +1,6 @@
 name: flutter_start
 description: Flutter start project.
-version: 1.0.0+1
+version: 1.0.1
 author: QianyuIm
 publish_to: 'none'
 
@@ -26,6 +26,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   # 获取当前设备信息
   device_info: ^2.0.1
+  package_info: ^2.0.2
   #  firebase : only VPN
   # firebase_storage: ^8.1.0
   # 网络
@@ -46,31 +47,18 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  assets:
+    - assets/images/
   # assets:
   #   - images/icon.jpeg
    # 配置字体，可配置多个，支持ttf和otf,ttc等字体资源
   fonts:
-    - family: IndieFlower 
-      fonts:
-        - asset: assets/fonts/IndieFlower-Regular.ttf
-    - family: BalooBhai2 
-      fonts:
-        - asset: assets/fonts/BalooBhai2-Regular.ttf
-    - family: Inconsolata 
-      fonts:
-        - asset: assets/fonts/Inconsolata-Regular.ttf
-    - family: Neucha 
-      fonts:
-        - asset: assets/fonts/Neucha-Regular.ttf
-    - family: ComicNeue 
-      fonts:
-        - asset: assets/fonts/ComicNeue-Regular.ttf
-    - family: CHOPS
-      fonts:
-        - asset: assets/fonts/CHOPS.TTF
-    - family: kuaile
+    - family: KuaiLe # https://fonts.google.com/?selection.family=Noto+Sans+SC&subset=chinese-simplified
       fonts:
         - asset: assets/fonts/ZCOOLKuaiLe-Regular.ttf
+    
+    
+
 
 flutter_intl:
   enabled: true

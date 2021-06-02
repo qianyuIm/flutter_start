@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_start/app_start.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_start/generated/l10n.dart';
+import 'package:flutter_start/help/launch_helper.dart';
 import 'package:flutter_start/router/router_manger.dart';
 import 'package:flutter_start/theme/locale_model.dart';
 import 'package:flutter_start/theme/theme_model.dart';
@@ -11,8 +12,10 @@ import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 void main() {
+  
   /// 初始化后
   AppStart.init(() {
+    
     runApp(MyApp());
   });
 }
@@ -42,6 +45,8 @@ class MyApp extends StatelessWidget {
             return RefreshConfiguration(
               hideFooterWhenNotFull: true,
               child:MaterialApp(
+                /// 安卓任务管理器展示
+                title: 'flutter start',
                 navigatorKey: navigatorKey,
                 debugShowCheckedModeBanner: false,
                 darkTheme: themeModel.themeData(isDarkMode: true),
@@ -57,7 +62,7 @@ class MyApp extends StatelessWidget {
                 ],
                 supportedLocales: S.delegate.supportedLocales,
                 onGenerateRoute: MyRouter.generateRoute,
-                initialRoute: MyRouterName.splash,
+                initialRoute:  LaunchHelper.initialRoute(),
                 builder: (context, child) {
                   return MediaQuery(
                     data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),

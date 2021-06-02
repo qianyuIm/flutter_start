@@ -62,7 +62,7 @@ class ImageLoadView extends StatelessWidget {
     this.height,
     this.margin: EdgeInsets.zero,
     this.fit: BoxFit.cover,
-    this.placeholder: "images/loading.png",
+    this.placeholder: "assets/images/loading.png",
     this.imageType: ImageType.network,
     this.opacity: 1.0,
     this.sigmaX: 0.0,

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_start/config/inch.dart';
+import 'package:flutter_start/help/locale_helper.dart';
 import 'package:flutter_start/model/tabIcon_data.dart';
-import 'package:flutter_start/theme/theme_model.dart';
 import 'dart:math' as math;
-
-import 'package:provider/provider.dart';
 
 class BottomBarView extends StatefulWidget {
   const BottomBarView(
@@ -230,8 +227,7 @@ class _BottomBarViewState extends State<BottomBarView>
 }
 
 class TabIcons extends StatefulWidget {
-  const TabIcons(
-      {Key? key, required this.tabIconData,  this.removeAllSelect})
+  const TabIcons({Key? key, required this.tabIconData, this.removeAllSelect})
       : super(key: key);
 
   final TabIconData tabIconData;
@@ -250,9 +246,9 @@ class _TabIconsState extends State<TabIcons> with TickerProviderStateMixin {
             if (status == AnimationStatus.completed) {
               if (!mounted) return;
               if (widget.removeAllSelect != null) {
-widget.removeAllSelect!();
+                widget.removeAllSelect!();
               }
-              
+
               widget.tabIconData.animationController?.reverse();
             }
           });
@@ -306,7 +302,9 @@ widget.removeAllSelect!();
                         color: isSelected ? selectedColor : color,
                       ),
                       Text(
-                        widget.tabIconData.label,
+                        LocaleHelper.localeString(
+                            widget.tabIconData.messageText,
+                            widget.tabIconData.name),
                         style: isSelected ? selectedStyle : style,
                       ),
                     ],

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_start/router/router_utils.dart';
+import 'package:flutter_start/ui/page/intro/intro_page.dart';
 import 'package:flutter_start/ui/page/splash/splash_page.dart';
 import 'package:flutter_start/ui/page/tab/tab_navigator.dart';
 import 'package:flutter_start/ui/page/user/setting/font_setting.dart';
@@ -10,6 +11,8 @@ import 'package:flutter_start/ui/page/user/setting/theme_color_setting.dart';
 class MyRouterName {
   /// 闪屏页
   static const String splash = 'splash';
+  /// 新特性
+  static const String intro = 'IntroPage';
   /// 首页
   static const String tab = '/';
   /// 应用设置页面
@@ -29,6 +32,8 @@ class MyRouter {
     switch (settings.name) {
       case MyRouterName.splash:
         return NoAnimRouteBuilder(SplashPage());
+      case MyRouterName.intro:
+        return NoAnimRouteBuilder(IntroPage());
       case MyRouterName.tab:
         return NoAnimRouteBuilder(TabNavigator());
       case MyRouterName.setting:

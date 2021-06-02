@@ -1,14 +1,7 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart' as sp;
-import 'package:flutter_start/config/data.dart';
 import 'package:flutter_start/generated/l10n.dart';
 import 'package:flutter_start/router/router_manger.dart';
-import 'package:flutter_start/theme/theme_model.dart';
-import 'package:flutter_start/ui/widget/image_load_view.dart';
-import 'package:provider/provider.dart';
 
 class UserPage extends StatefulWidget {
   @override

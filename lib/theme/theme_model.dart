@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_start/config/constant.dart';
 import 'package:flutter_start/generated/l10n.dart';
-import 'package:flutter_start/help/theme_helper.dart';
-import 'package:provider/provider.dart';
 
 class ThemeModel extends ChangeNotifier {
   static const kThemeColorIndex = 'kThemeColorIndex';
@@ -20,7 +18,6 @@ class ThemeModel extends ChangeNotifier {
   /// 当前字体
   late String _fontFamily;
 
-
   ThemeModel() {
     _darkModeIndex = SpUtil.getInt(kThemeUserDarkMode)!;
     _themeColor = ConstantUtil.themeColorSupport.keys
@@ -31,7 +28,6 @@ class ThemeModel extends ChangeNotifier {
   String get fontFamily => _fontFamily;
   MaterialColor get themeColor => _themeColor;
   int get darkModeIndex => _darkModeIndex;
-
 
   void switchDarkMode(int? index) {
     _darkModeIndex = index ?? _darkModeIndex;
@@ -54,9 +50,10 @@ class ThemeModel extends ChangeNotifier {
     notifyListeners();
     _saveFontFamily2Storage(_fontFamily);
   }
- ThemeMode getThemeMode(){
-   int index = SpUtil.getInt(kThemeUserDarkMode)!;
-    switch(index) {
+
+  ThemeMode getThemeMode() {
+    int index = SpUtil.getInt(kThemeUserDarkMode)!;
+    switch (index) {
       case 0:
         return ThemeMode.system;
       case 1:
@@ -65,39 +62,52 @@ class ThemeModel extends ChangeNotifier {
         return ThemeMode.dark;
     }
   }
+
   /// 自定义 themeData
   /// isPlatformDarkMode: 系统级别
   ThemeData themeData({bool isDarkMode: false}) {
     var themeColor = _themeColor;
-    /// 
+
+    ///
     return ThemeData(
         brightness: isDarkMode ? Brightness.dark : Brightness.light,
+
         /// 主色
         primaryColor: isDarkMode ? themeColor[700] : themeColor,
+
         /// 次级色
         accentColor: isDarkMode ? themeColor[800] : _themeColor,
+
         /// 自定义 tabbar
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           backgroundColor: isDarkMode ? Colors.grey[800]! : Colors.white,
-            selectedItemColor: isDarkMode ? themeColor[700] : themeColor,
-            unselectedItemColor: isDarkMode ? Colors.white70 : Colors.black54,
-            selectedLabelStyle: TextStyle(color: isDarkMode ? themeColor[700] : themeColor,
-            fontSize: 14,
-            fontFamily: _fontFamily),
-            unselectedLabelStyle: TextStyle(color: isDarkMode ? Colors.white70 : Colors.black54,fontSize: 12),
+          selectedItemColor: isDarkMode ? themeColor[700] : themeColor,
+          unselectedItemColor: isDarkMode ? Colors.white70 : Colors.black54,
+          selectedLabelStyle: TextStyle(
+              color: isDarkMode ? themeColor[700] : themeColor,
+              fontSize: 14,
+              fontFamily: _fontFamily),
+          unselectedLabelStyle: TextStyle(
+              color: isDarkMode ? Colors.white70 : Colors.black54,
+              fontSize: 12),
         ),
+
         /// 导航条
         appBarTheme: AppBarTheme(
-          centerTitle: true,
-          elevation: 0.0,
-          color: isDarkMode ? Colors.grey[900]! : themeColor,
-          brightness: isDarkMode ? Brightness.dark : Brightness.light,
-        ),
+            centerTitle: true,
+            elevation: 0.0,
+            color: isDarkMode ? Colors.grey[900]! : themeColor,
+            brightness: isDarkMode ? Brightness.dark : Brightness.light,
+            iconTheme:
+                IconThemeData(color: isDarkMode ? Colors.white : Colors.black),
+            textTheme: TextTheme(
+                headline6: TextStyle(
+                    fontSize: 20, color: isDarkMode ? Colors.white : Colors.black, fontFamily: fontFamily))),
+
         /// 内容背景色
         scaffoldBackgroundColor:
             isDarkMode ? Colors.grey[850]! : Colors.grey[50]!,
         fontFamily: _fontFamily);
-
   }
 
   /// 数据持久化到shared preferences
