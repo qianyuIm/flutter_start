@@ -3,6 +3,7 @@ import 'package:flutter_start/config/colors.dart';
 import 'package:flutter_start/config/constant.dart';
 import 'package:flutter_start/generated/l10n.dart';
 import 'package:flutter_start/theme/theme_model.dart';
+import 'package:flutter_start/ui/flutter/qy_expansion_tile.dart';
 import 'package:flutter_start/ui/widget/circle.dart';
 import 'package:flutter_start/ui/widget/feedback_widget.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,7 @@ class ThemeColorSettingPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 10),
         ),
         SliverToBoxAdapter(
-          child: ExpansionTile(
+          child: QYExpansionTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -48,12 +49,15 @@ class ThemeColorSettingPage extends StatelessWidget {
             ),
             children: [
               ListView.builder(
+                padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 itemCount: ConstantUtil.darkModeSupport.length,
                 itemBuilder: (context, index) {
                   var themeModel =
                       Provider.of<ThemeModel>(context, listen: false);
                   return RadioListTile<int>(
+                    activeColor: Theme.of(context).primaryColor,
+                    selected: themeModel.darkModeIndex == index,
                     value: index,
                     onChanged: (value) {
                       themeModel.switchDarkMode(value);
@@ -87,8 +91,9 @@ class ThemeColorSettingPage extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10)),
-                      color:
-                          themeColor == gridColor ? Colors.black : Colors.red),
+                      color: themeColor == gridColor
+                          ? themeColor.withAlpha(100)
+                          : themeColor.withAlpha(30)),
                   padding: EdgeInsets.only(left: 10, right: 5),
                   height: 30,
                   child: Row(

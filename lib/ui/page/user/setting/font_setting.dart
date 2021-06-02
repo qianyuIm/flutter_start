@@ -15,16 +15,13 @@ class FontSettingPage extends StatelessWidget {
         centerTitle: true,
         title: Text(S.of(context).fontSetting),
       ),
-      body: _buildFontCell(
-          context, ConstantUtil.fontFamilySupport, themeModel.fontFamily, themeModel),
+      body: _buildFontCell(context, ConstantUtil.fontFamilySupport,
+          themeModel.fontFamily, themeModel),
     );
   }
 
-  Widget _buildFontCell(
-      BuildContext context,
-       List<String> fontFamilySupport,
-        String fontFamily,
-        ThemeModel themeModel) {
+  Widget _buildFontCell(BuildContext context, List<String> fontFamilySupport,
+      String fontFamily, ThemeModel themeModel) {
     var themeColor = Theme.of(context).primaryColor;
     return GridView.count(
       padding: EdgeInsets.only(top: 20, left: 10, right: 10),
@@ -33,48 +30,54 @@ class FontSettingPage extends StatelessWidget {
       mainAxisSpacing: 10,
       crossAxisSpacing: 10,
       childAspectRatio: 1.5,
-      children: fontFamilySupport.map((e) => FeedbackWidget(
-        a: 0.95,
-        duration: Duration(milliseconds: 200),
-        onPressed: () {
-          themeModel.switchFontFamily(fontFamily: e);
-        },
-        child: Card(
-      shadowColor: Theme.of(context).primaryColor,
-      elevation: 5,
-      child: GridTile(
-        header: Container(
-          height: 30,
-          padding: EdgeInsets.only(left: 10, right: 5),
-          color: e == fontFamily ? themeColor.withAlpha(100) : themeColor.withAlpha(30),
-          child: Row(
-              children: [
-                Text(e,style: TextStyle(fontFamily: e),),
-                Spacer(),
-                if (e == fontFamily) Circle(color: themeColor,)
-              ],
-          ),
-        ),
-        child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                themeColor.withAlpha(40),
-                themeColor.withAlpha(80),
-                themeColor.withAlpha(100),
-              ]),
-              
-            ),
-            alignment: Alignment(0, 0.2),
-            child: Text(
-              '浅宇\nQianyuIm',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontFamily: e, fontSize: 16),
-            ),
-        ),
-      )
-    )
-      )).toList(),
+      children: fontFamilySupport
+          .map((e) => FeedbackWidget(
+              a: 0.95,
+              duration: Duration(milliseconds: 200),
+              onPressed: () {
+                themeModel.switchFontFamily(fontFamily: e);
+              },
+              child: Card(
+                  shadowColor: Theme.of(context).primaryColor,
+                  elevation: 5,
+                  child: GridTile(
+                    header: Container(
+                      height: 30,
+                      padding: EdgeInsets.only(left: 10, right: 5),
+                      color: e == fontFamily
+                          ? themeColor.withAlpha(100)
+                          : themeColor.withAlpha(30),
+                      child: Row(
+                        children: [
+                          Text(
+                            e,
+                            style: TextStyle(fontFamily: e),
+                          ),
+                          Spacer(),
+                          if (e == fontFamily)
+                            Circle(
+                              color: themeColor,
+                            )
+                        ],
+                      ),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                          themeColor.withAlpha(40),
+                          themeColor.withAlpha(80),
+                          themeColor.withAlpha(100),
+                        ]),
+                      ),
+                      alignment: Alignment(0, 0.2),
+                      child: Text(
+                        '浅宇\nQianyuIm',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontFamily: e, fontSize: 16),
+                      ),
+                    ),
+                  ))))
+          .toList(),
     );
   }
 }
-

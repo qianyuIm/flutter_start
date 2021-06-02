@@ -91,7 +91,7 @@ class ThemeModel extends ChangeNotifier {
               color: isDarkMode ? Colors.white70 : Colors.black54,
               fontSize: 12),
         ),
-
+dividerColor: Colors.red,
         /// 导航条
         appBarTheme: AppBarTheme(
             centerTitle: true,
