@@ -1,3 +1,4 @@
+import 'package:colour/colour.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +92,8 @@ class ThemeModel extends ChangeNotifier {
               color: isDarkMode ? Colors.white70 : Colors.black54,
               fontSize: 12),
         ),
-dividerColor: Colors.red,
+        dividerColor: Colors.red,
+
         /// 导航条
         appBarTheme: AppBarTheme(
             centerTitle: true,
@@ -99,14 +101,16 @@ dividerColor: Colors.red,
             color: isDarkMode ? Colors.grey[900]! : themeColor,
             brightness: isDarkMode ? Brightness.dark : Brightness.light,
             iconTheme:
-                IconThemeData(color: isDarkMode ? Colors.white : Colors.black),
+                IconThemeData(color: isDarkMode ? Colors.white : Colour('333333')),
             textTheme: TextTheme(
                 headline6: TextStyle(
-                    fontSize: 20, color: isDarkMode ? Colors.white : Colors.black, fontFamily: fontFamily))),
+                    fontSize: 20,
+                    color: isDarkMode ? Colors.white : Colour('333333'),
+                    fontFamily: fontFamily))),
 
         /// 内容背景色
         scaffoldBackgroundColor:
-            isDarkMode ? Colors.grey[850]! : Colors.grey[50]!,
+            isDarkMode ? AppThemeItem.appDarkBackgroundColor : AppThemeItem.appBackgroundColor,
         fontFamily: _fontFamily);
   }
 
@@ -138,4 +142,12 @@ dividerColor: Colors.red,
         return '';
     }
   }
+}
+
+class AppThemeItem {
+  /// 黑暗模式 背景色 
+  static Color appDarkBackgroundColor =  Colour('#303030');
+  /// 背景色 
+  static Color appBackgroundColor = Colour('#fafafa');
+  
 }

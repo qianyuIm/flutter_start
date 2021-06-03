@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_start/generated/l10n.dart';
 import 'package:flutter_start/router/router_manger.dart';
+import 'package:flutter_start/theme/theme_model.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -25,7 +27,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+      backgroundColor: AppThemeItem.appDarkBackgroundColor,
       body: WillPopScope(
         onWillPop: () => Future.value(false),
         child: Align(
@@ -53,7 +58,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           ),
         ),
       ),
+    ),
     );
+    
+    
   }
 
 }

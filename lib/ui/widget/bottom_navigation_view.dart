@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_start/config/inch.dart';
 import 'package:flutter_start/help/locale_helper.dart';
 import 'package:flutter_start/model/tabIcon_data.dart';
 import 'dart:math' as math;
+
+/// tabbar 高度 34 + 49
+double tabbarHeight = ScreenUtil().bottomBarHeight + Inchs.tabbar_height;
+
+/// 36
+double tabClipperRadius = 36.0;
+
+/// 36 + 34 + 49
+double tabClipperHeight = tabClipperRadius + tabbarHeight;
 
 class BottomBarView extends StatefulWidget {
   const BottomBarView(
@@ -21,13 +31,6 @@ class BottomBarView extends StatefulWidget {
 
 class _BottomBarViewState extends State<BottomBarView>
     with TickerProviderStateMixin {
-  /// tabbar 高度
-  static double tabbarHeight = 60.0;
-  static double tabClipperRadius = 36.0;
-  static double tabClipperHeight = tabClipperRadius + 60;
-
-  static double initHeight = ScreenUtil().bottomBarHeight + tabClipperHeight;
-
   late AnimationController _animationController;
   @override
   void initState() {
@@ -48,37 +51,41 @@ class _BottomBarViewState extends State<BottomBarView>
   @override
   Widget build(BuildContext context) {
     var bottomNavigationBarTheme = Theme.of(context).bottomNavigationBarTheme;
-    var selectedItemColor = bottomNavigationBarTheme.selectedItemColor!;
     var backgroundColor = bottomNavigationBarTheme.backgroundColor!;
     return Container(
-        height: initHeight,
-        color: Colors.transparent,
-        child: Column(
-          children: [
-            const Expanded(child: SizedBox()),
-            Stack(
-              alignment: AlignmentDirectional.bottomCenter,
-              children: [
-                AnimatedBuilder(
-                  animation: _animationController,
-                  builder: (context, child) {
-                    return Transform(
-                      transform: Matrix4.translationValues(0.0, 0.0, 0.0),
-                      child: PhysicalShape(
-                        color: backgroundColor,
-                        elevation: 16.0,
-                        clipper: TabClipper(
-                          radius: Tween<double>(begin: 0.0, end: 1.0)
-                                  .animate(CurvedAnimation(
-                                      parent: _animationController,
-                                      curve: Curves.fastOutSlowIn))
-                                  .value *
-                              tabClipperRadius,
-                        ),
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: tabbarHeight,
+      alignment: Alignment.center,
+      color: Colors.transparent,
+      height: tabbarHeight,
+      child: OverflowBox(
+        maxHeight: tabClipperHeight,
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          color: Colors.transparent,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AnimatedBuilder(
+                      animation: _animationController,
+                      builder: (context, child) {
+                        return Transform(
+                          transform: Matrix4.translationValues(0.0, 0.0, 0.0),
+                          child: PhysicalShape(
+                            color: backgroundColor,
+                            elevation: 16.0,
+                            clipper: TabClipper(
+                              radius: Tween<double>(begin: 0.0, end: 1.0)
+                                      .animate(CurvedAnimation(
+                                          parent: _animationController,
+                                          curve: Curves.fastOutSlowIn))
+                                      .value *
+                                  tabClipperRadius,
+                            ),
+                            child: SizedBox(
+                              height: Inchs.tabbar_height,
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                     left: 8, right: 8, top: 4),
@@ -132,85 +139,26 @@ class _BottomBarViewState extends State<BottomBarView>
                                 ),
                               ),
                             ),
-
-                            /// 安全区域
-                            SizedBox(
-                              height: ScreenUtil().bottomBarHeight,
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                // ),
-
-                /// 中间按钮
-                Padding(
-                  padding:
-                      EdgeInsets.only(bottom: ScreenUtil().bottomBarHeight),
-                  child: SizedBox(
-                    width: tabClipperRadius * 2,
-                    height: tabClipperHeight,
-                    child: Container(
-                      alignment: Alignment.topCenter,
-                      color: Colors.transparent,
-                      child: SizedBox(
-                        width: tabClipperRadius * 2,
-                        height: tabClipperRadius * 2,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ScaleTransition(
-                            alignment: Alignment.center,
-                            scale: Tween<double>(begin: 0.0, end: 1.0).animate(
-                                CurvedAnimation(
-                                    parent: _animationController,
-                                    curve: Curves.fastOutSlowIn)),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: selectedItemColor,
-                                gradient: LinearGradient(
-                                    colors: [
-                                      selectedItemColor.withAlpha(40),
-                                      selectedItemColor,
-                                      selectedItemColor.withAlpha(100)
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight),
-                                shape: BoxShape.circle,
-                                boxShadow: <BoxShadow>[
-                                  BoxShadow(
-                                      color: selectedItemColor.withOpacity(0.3),
-                                      offset: const Offset(8, 8.0),
-                                      blurRadius: 8.0),
-                                ],
-                              ),
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  onTap: () {
-                                    widget.searchClick();
-                                  },
-                                  child: Icon(
-                                    Icons.search,
-                                    size: 32,
-                                  ),
-                                ),
-                              ),
-                            ),
                           ),
-                        ),
-                      ),
+                        );
+                      },
                     ),
-                  ),
+
+                    /// 安全区域
+                    SizedBox(
+                      height: ScreenUtil().bottomBarHeight,
+                      child: Container(
+                        color: backgroundColor,
+                      ),
+                    )
+                  ],
                 ),
-              ],
-            )
-          ],
-        ));
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   void setRemoveAllSelection(TabIconData tabIconData) {
@@ -416,5 +364,91 @@ class TabClipper extends CustomClipper<Path> {
   double degreeToRadians(double degree) {
     final double redian = (math.pi / 180) * degree;
     return redian;
+  }
+}
+class MyFloatingActionButton extends StatefulWidget {
+    final Function searchClick;
+
+  const MyFloatingActionButton({Key? key, required this.searchClick })
+      : super(key: key);
+  @override
+  _MyFloatingActionButtonState createState() => _MyFloatingActionButtonState();
+}
+
+class _MyFloatingActionButtonState extends State<MyFloatingActionButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1200))
+      ..forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var bottomNavigationBarTheme = Theme.of(context).bottomNavigationBarTheme;
+
+    var selectedItemColor = bottomNavigationBarTheme.selectedItemColor!;
+
+    return SizedBox(
+        width: tabClipperRadius * 2,
+        height: tabbarHeight,
+        child: Container(
+            alignment: Alignment.topCenter,
+            color: Colors.transparent,
+            child: SizedBox(
+              width: tabClipperRadius * 2,
+              height: tabClipperRadius * 2,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ScaleTransition(
+                  alignment: Alignment.center,
+                  scale: Tween<double>(begin: 0.0, end: 1.0).animate(
+                      CurvedAnimation(
+                          parent: _animationController,
+                          curve: Curves.fastOutSlowIn)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: selectedItemColor,
+                      gradient: LinearGradient(colors: [
+                        selectedItemColor.withAlpha(40),
+                        selectedItemColor,
+                        selectedItemColor.withAlpha(100)
+                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                      shape: BoxShape.circle,
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                            color: selectedItemColor.withOpacity(0.3),
+                            offset: const Offset(8, 8.0),
+                            blurRadius: 8.0),
+                      ],
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        onTap: () {
+                          widget.searchClick();
+                        },
+                        child: Icon(
+                          Icons.search,
+                          size: 32,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )));
   }
 }

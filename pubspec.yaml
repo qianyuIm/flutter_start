@@ -35,6 +35,8 @@ dependencies:
   pull_to_refresh: ^2.0.0
   # 带缓存的图片
   cached_network_image: ^3.0.0
+  # hexcolor: ^2.0.3
+  colour: ^1.0.5
   
 # 开发阶段依赖
 dev_dependencies:
@@ -49,8 +51,9 @@ flutter:
 
   assets:
     - assets/images/
-  # assets:
-  #   - images/icon.jpeg
+    - assets/images/2.0x/
+    - assets/images/3.0x/
+  
    # 配置字体，可配置多个，支持ttf和otf,ttc等字体资源
   fonts:
     - family: KuaiLe # https://fonts.google.com/?selection.family=Noto+Sans+SC&subset=chinese-simplified

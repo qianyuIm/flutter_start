@@ -19,7 +19,7 @@ class TabNavigator extends StatefulWidget {
 class _TabNavigatorState extends State<TabNavigator>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
-  late  List<TabIconData> tabIconsList = TabIconData.tabIconsList;
+  late List<TabIconData> tabIconsList = TabIconData.tabIconsList;
   var _pageController = PageController();
   DateTime? _lastPressed;
   @override
@@ -39,13 +39,15 @@ class _TabNavigatorState extends State<TabNavigator>
     _animationController.dispose();
     super.dispose();
   }
-  
-  
+
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       bottomNavigationBar: _buildBottomBar(),
+      floatingActionButton: MyFloatingActionButton(searchClick: () {
+        print('object');
+      },),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: WillPopScope(
         onWillPop: () async {
           _lastPressed = _lastPressed ?? DateTime.now();
@@ -64,8 +66,8 @@ class _TabNavigatorState extends State<TabNavigator>
     );
   }
 
-  
   Widget _buildBottomBar() {
+
     return BottomBarView(
       tabIconsList: tabIconsList,
       changeIndex: (index) {
