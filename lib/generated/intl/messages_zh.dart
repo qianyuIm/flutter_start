@@ -29,7 +29,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "languageSetting": MessageLookupByLibrary.simpleMessage("语言设置"),
         "normalMode": MessageLookupByLibrary.simpleMessage("普通模式"),
         "setting": MessageLookupByLibrary.simpleMessage("应用设置"),
+        "specialEffects": MessageLookupByLibrary.simpleMessage("特殊效果"),
         "splashSkip": MessageLookupByLibrary.simpleMessage("跳过"),
+        "tabEffect": MessageLookupByLibrary.simpleMessage("效果"),
         "tabHome": MessageLookupByLibrary.simpleMessage("首页"),
         "tabUser": MessageLookupByLibrary.simpleMessage("我的"),
         "themeColorSettings": MessageLookupByLibrary.simpleMessage("主题色设置")

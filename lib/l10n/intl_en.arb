@@ -1,6 +1,8 @@
 {
     "tabHome": "Home",
+    "tabEffect": "Effect",
     "tabUser": "Me",
+    
     "splashSkip": "Skip",
     "autoBySystem": "Auto",
     "setting": "Setting",
@@ -10,7 +12,10 @@
     "normalMode": "normal Mode",
     "fontSetting": "Font Setting",
     "languageSetting": "Language Setting",
-    "languageExpansionTile": "Language"
+    "languageExpansionTile": "Language",
+
+    "specialEffects":"Special Effects"
+
 
 
 

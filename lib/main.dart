@@ -17,6 +17,7 @@ void main() {
   AppStart.init(() {
     
     runApp(MyApp());
+    
   });
   
 }

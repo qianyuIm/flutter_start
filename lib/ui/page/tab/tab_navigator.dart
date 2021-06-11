@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_start/model/tabIcon_data.dart';
+import 'package:flutter_start/ui/page/tab/effect_page.dart';
 import 'package:flutter_start/ui/page/tab/home_page.dart';
 import 'package:flutter_start/ui/page/tab/test_page.dart';
 import 'package:flutter_start/ui/page/tab/test_page1.dart';
+import 'package:flutter_start/ui/page/tab/test_page2.dart';
 import 'package:flutter_start/ui/page/tab/user_page.dart';
 import 'package:flutter_start/ui/widget/bottom_navigation_view.dart';
 
 final List<Widget> _pages = <Widget>[
   HomePage(),
-  TestPage1(),
-  TestPage(),
+  TestPage2(),
+  EffectPage(),
   UserPage()
 ];
 

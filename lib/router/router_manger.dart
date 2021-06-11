@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_start/router/router_utils.dart';
 import 'package:flutter_start/ui/page/intro/intro_page.dart';
+import 'package:flutter_start/ui/page/specialEffects/douban/effect_douban2.dart';
 import 'package:flutter_start/ui/page/splash/splash_page.dart';
 import 'package:flutter_start/ui/page/tab/tab_navigator.dart';
 import 'package:flutter_start/ui/page/user/setting/font_setting.dart';
@@ -24,6 +25,8 @@ class MyRouterName {
   ///语言设置
   static const String language_setting = 'LanguageSettingPage';
 
+  static const String effect_douban = 'EffectDouBanPage';
+
   static const String demo = 'demo';
 }
 
@@ -45,7 +48,8 @@ class MyRouter {
       case MyRouterName.language_setting:
         return Right2LeftRouter(LanguageSettingPage());
 
-
+      case MyRouterName.effect_douban:
+        return Right2LeftRouter(EffectDouBanPage2());
 
 
       case MyRouterName.demo:

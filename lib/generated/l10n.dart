@@ -60,6 +60,16 @@ class S {
     );
   }
 
+  /// `Effect`
+  String get tabEffect {
+    return Intl.message(
+      'Effect',
+      name: 'tabEffect',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Me`
   String get tabUser {
     return Intl.message(
@@ -165,6 +175,16 @@ class S {
     return Intl.message(
       'Language',
       name: 'languageExpansionTile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Special Effects`
+  String get specialEffects {
+    return Intl.message(
+      'Special Effects',
+      name: 'specialEffects',
       desc: '',
       args: [],
     );

@@ -32,7 +32,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Language Setting"),
         "normalMode": MessageLookupByLibrary.simpleMessage("normal Mode"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
+        "specialEffects":
+            MessageLookupByLibrary.simpleMessage("Special Effects"),
         "splashSkip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "tabEffect": MessageLookupByLibrary.simpleMessage("Effect"),
         "tabHome": MessageLookupByLibrary.simpleMessage("Home"),
         "tabUser": MessageLookupByLibrary.simpleMessage("Me"),
         "themeColorSettings":

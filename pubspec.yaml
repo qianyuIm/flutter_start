@@ -35,8 +35,12 @@ dependencies:
   pull_to_refresh: ^2.0.0
   # 带缓存的图片
   cached_network_image: ^3.0.0
-  # hexcolor: ^2.0.3
+  # 颜色
   colour: ^1.0.5
+  # 星星组件
+  flutter_rating_bar: ^4.0.0 
+  # 底部抽屉
+  sliding_up_panel: ^2.0.0+1
   
 # 开发阶段依赖
 dev_dependencies:

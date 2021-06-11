@@ -10,7 +10,7 @@ class LaunchHelper {
   static String initialRoute()  {
     var storage = SpUtil.getString(kVersionFirstOpen)!;
     ///  TODO： 测试阶段 
-    // return MyRouterName.intro;
+    return MyRouterName.intro;
     ///  展示新特性
     if (storage != AppStart.packageVersion) {
       return MyRouterName.intro;

@@ -1,6 +1,9 @@
 {
     "tabHome": "首页",
+    "tabEffect": "效果",
     "tabUser": "我的",
+    
+
     "splashSkip": "跳过",
     "autoBySystem": "跟随系统",
     "setting": "应用设置",
@@ -10,5 +13,8 @@
     "normalMode": "普通模式",
     "fontSetting": "字体设置",
     "languageSetting": "语言设置",
-    "languageExpansionTile": "多语言"
+    "languageExpansionTile": "多语言",
+
+    "specialEffects":"特殊效果"
+
 }

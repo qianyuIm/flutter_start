@@ -7,7 +7,7 @@ import 'package:flutter_start/ui/flutter/qy_expansion_tile.dart';
 import 'package:flutter_start/ui/widget/circle.dart';
 import 'package:flutter_start/ui/widget/feedback_widget.dart';
 import 'package:provider/provider.dart';
-
+// https://dev.to/himanshusharma89/flutter-how-to-scroll-an-expansiontile-when-it-is-expanded-2i2c
 class ThemeColorSettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
